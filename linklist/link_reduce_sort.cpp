@@ -1,5 +1,5 @@
 /*
-https://www.cnblogs.com/grandyang/p/4129891.html
+https://www.cnblogs.com/grandyang/p/4249905.html
 */
 #include<iostream>
 using namespace std;
