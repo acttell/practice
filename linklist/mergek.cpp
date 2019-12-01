@@ -1,3 +1,8 @@
+
+/*
+https://www.cnblogs.com/grandyang/p/4606710.html
+https://blog.csdn.net/acttell/article/details/80754732
+*/
 #include<iostream>
 #include<queue>
 #include<vector>
@@ -20,25 +25,18 @@ node* mergek(vector<node*>& v)
 {
     priority_queue<node*,vector<node*>,cmp> pq;
     for(int i=0;i<v.size();i++) pq.push(v[i]);
-    node* h=NULL;
-    node* p=NULL;
-    node* q=NULL;
+    node* p=new node;
+    p->val=-1;
+    node* h=p;
     while(!pq.empty())
     {
-        q=pq.top();
+        node* q=pq.top();
         pq.pop();
         if(q->next!=NULL) pq.push(q->next);
-        if(h==NULL)
-        {
-            h=p;
-            p=q;
-        }else
-        {
-            p->next=q;
-            p=p->next;
-        }
+        p->next=q;
+        p=p->next;
     }
-    return h;
+    return h->next;
 }
 int main()
 {
