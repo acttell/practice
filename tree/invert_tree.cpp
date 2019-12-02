@@ -48,6 +48,23 @@ tree* invert(tree* root)
     root->right=invert(tmp);
     return root;
 }
+tree* invert_queue(tree* root)
+{
+    if(root==NULL) return NULL;
+    queue<tree*> q;
+    q.push(root);
+    while(!q.empty())
+    {
+        tree* node=q.front();
+        q.pop();
+        tree* tmp=node->left;
+        node->left=node->right;
+        node->right=tmp;
+        if(node->left) q.push(node->left);
+        if(node->right) q.push(node->right);
+    }
+    return root;
+}
 int main()
 {
     int a[11]={1,2,4,'#','#',5,'#','#',3,'#','#'};
@@ -57,8 +74,10 @@ int main()
     tree* root=creat_tree(a,n,index);
     level_traverse(root);
     cout<<endl<<"--------"<<endl;
-    root=invert(root);
+    //root=invert(root);
+    root=invert_queue(root);
     level_traverse(root);
     cout<<endl;
+    
     return 0;
 }
