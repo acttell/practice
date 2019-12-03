@@ -1,5 +1,6 @@
 /*
 https://blog.csdn.net/acttell/article/details/80789299
+https://blog.csdn.net/acttell/article/details/80791395
 */
 #include<iostream>
 #include<vector>
@@ -29,7 +30,33 @@ vector<int> spiral_matrix(vector<vector<int>>& vv)
         l++;
     }
     return v;
-
+}
+vector<vector<int>> spiral_build(int n)
+{
+    int l=0;
+    int r=n-1;
+    int u=0;
+    int d=n-1;
+    int x=1;
+    vector<vector<int>> vv(n,vector<int>(n));
+    while(l<=r && u<=d)
+    {
+        for(int i=l;i<=r;i++) vv[u][i]=x++;
+        u++;
+        for(int j=u;j<=d;j++) vv[j][r]=x++;
+        r--;
+        if(u<d)
+        {
+            for(int m=r;m>=l;m--) vv[d][m]=x++;
+        }
+        d--;
+        if(l<r)
+        {
+            for(int n=d;n>=u;n--) vv[n][l]=x++;
+        }
+        l++;
+    }
+    return vv;
 }
 int main()
 {
@@ -44,5 +71,15 @@ int main()
         cout<<iter<<",";
     }
     cout<<endl;
+    int n=3;
+    vector<vector<int>> vv2(n,vector<int>(n));
+    vv2=spiral_build(n);
+    for(auto iter1:vv2)
+    {
+        for(auto iter2:iter1)
+        {
+            cout<<iter2<<",";
+        }
+    }
     return 0;
 }
