@@ -1,4 +1,4 @@
-//https://www.cnblogs.com/grandyang/p/4254860.html
+//https://www.cnblogs.com/grandyang/p/4441324.html
 #include<iostream>
 #include<stack>
 #include<vector>
@@ -11,21 +11,6 @@ typedef struct Node
     struct Node* next;
     int val;
 }node;
-node* revert(node* h)
-{
-    node* p=h;
-    node* q=h->next;
-    node* r=q->next;
-    h->next=NULL;
-    while(q!=NULL)
-    {
-        q->next=p;
-        p=q;
-        q=r;
-        if(r!=NULL) r=r->next;
-    }
-    return p;
-}
 node* k_group_reverse(node* head,int k)
 {
     node* dummy=new node;
